@@ -67,7 +67,7 @@ export default styles=StyleSheet.create({
         color:'#909596', fontFamily:'Avenir', fontSize:20
     },
     bodyText:{
-        justifyContent:'space-between', marginLeft:10
+        justifyContent:'space-between', marginLeft:10, width:width*0.7
     },
     price:{
         color:'#BA0AC9', fontSize:18
@@ -89,5 +89,14 @@ export default styles=StyleSheet.create({
     },
     rightDetail:{
         flexDirection:"row",justifyContent:'space-around'
+    },
+    remove:{
+        position:'absolute', right:5
+    },
+    quantity:{
+        flexDirection:'row', justifyContent:'space-between'
+    },
+    changeQuantity:{
+        flexDirection:'row', justifyContent:'space-between', width:width*0.3
     }
 })

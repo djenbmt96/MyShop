@@ -38,7 +38,7 @@ class TabBar extends Component {
                         <Badge style={styles.badge}><Text>2</Text></Badge>
                     </TabHeading>
                 }>
-                    <Cart />
+                    <Cart onOpen={this.props.onOpenProduct} />
                 </Tab>
                 <Tab heading={
                     <TabHeading style={styles.tabHead}>
@@ -46,7 +46,7 @@ class TabBar extends Component {
                         <Text>Search</Text>
                     </TabHeading>
                 }>
-                    <Search />
+                    <Search onOpen={this.props.onOpenProduct} />
                 </Tab>
                 <Tab heading={
                     <TabHeading style={styles.tabHead}>

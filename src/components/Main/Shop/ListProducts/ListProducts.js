@@ -3,6 +3,7 @@ import { View,Text, Image, TouchableOpacity } from 'react-native';
 import {  Container, Content, Header, Card, CardItem, Left, Body, Icon, Title, Right, List, ListItem, Button } from 'native-base';
 import Head from '../Head';
 import styles from '../../../../styles/Main/Shop';
+import Product from './Product';
 
 class ListProducts extends Component {
     constructor(props) {
@@ -33,18 +34,7 @@ class ListProducts extends Component {
                             renderRow={(item) => {
                                 return (
                                     <ListItem>
-                                        <TouchableOpacity
-                                        style={styles.productInList}
-                                        onPress={()=>this.goToDetail()}
-                                        >
-                                            <Image style={styles.imageList} source={require('../../../../../Images/sp1.jpeg')} />
-                                            <View style={styles.bodyText}>
-                                                <Text style={styles.textNameProduct}>Party Dress</Text>
-                                                <Text style={styles.price}>100$</Text>
-                                                <Text>Meterial silk</Text>
-                                                <Text>Color RoyalBlue</Text>
-                                            </View>
-                                        </TouchableOpacity>
+                                        <Product product={item} onPress={()=>this.goToDetail()}/>
                                     </ListItem>
                                 )
                             }}
