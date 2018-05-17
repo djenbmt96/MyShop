@@ -15,7 +15,7 @@ class Category extends Component {
                     <Text style={styles.textHeader}>LIST OF CATEGORY</Text>
                 </CardItem>
                 <Swiper style={styles.wrapper}>
-                    <TouchableOpacity style={styles.touchable} onPress={() => {}}>
+                    <TouchableOpacity style={styles.touchable} onPress={this.props.onOpen}>
                         <ImageBackground
                             style={styles.imageBackground}
                             source={require('../../../../../Images/party.jpg')}

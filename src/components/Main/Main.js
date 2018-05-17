@@ -6,7 +6,7 @@ import Authentication from '../Authentication/Authentication';
 import ChangeInfo from '../ChangeInfo/ChangeInfo';
 import OrderHistory from '../OrderHistory/OrderHistory';
 import SideBar from './SideBar';
-import Home from './Shop/Home/Home';
+import Home from './Shop/Home/HomeNavigation';
 import Shop from './Shop/Shop';
 
 const Main = DrawerNavigator(
@@ -18,6 +18,7 @@ const Main = DrawerNavigator(
         Shop : {screen: Shop},
     },
     {
+        initialRouteName:'Home',
         contentComponent: props => <SideBar {...props} />
     });
 export default Main;

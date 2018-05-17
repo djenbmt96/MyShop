@@ -18,7 +18,7 @@ class TopProduct extends Component {
                     justifyContent: 'space-around',
                     flexWrap: 'wrap'
                 }}>
-                    <TouchableOpacity style={styles.product}>
+                    <TouchableOpacity style={styles.product} onPress={this.props.onOpen}>
                         <Card>
                             <CardItem style={styles.itemNoPadding}>
                                 <Image style={styles.imageProduct} source={require('../../../../../Images/sp1.jpeg')} />
