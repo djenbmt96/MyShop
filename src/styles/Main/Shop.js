@@ -98,5 +98,8 @@ export default styles=StyleSheet.create({
     },
     changeQuantity:{
         flexDirection:'row', justifyContent:'space-between', width:width*0.3
+    },
+    map:{
+        width:'100%',height:width*0.6
     }
 })

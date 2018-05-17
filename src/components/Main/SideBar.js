@@ -6,7 +6,7 @@ export default class SideBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoggin: false
+            isLoggin: true
         };
     }
     _renderLoggin = () => (

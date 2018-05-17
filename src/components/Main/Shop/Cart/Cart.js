@@ -11,7 +11,7 @@ class Cart extends Component {
         return (
             <Content>
                 <List
-                    dataArray={[1, 2, 3]}
+                    dataArray={[1, 2]}
                     renderRow={(item) => {
                         return (
                             <Card style={styles.productInList}>
