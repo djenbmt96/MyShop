@@ -1,18 +1,46 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import {Tabs,Tab,TabHeading,Icon,Text,Content,Badge} from 'native-base';
+import { Tabs, Tab, TabHeading, Icon, Text, Content, Badge } from 'native-base';
 import Collection from './Home/Collection';
 import Category from './Home/Category';
 import TopProduct from './Home/TopProduct';
 import Cart from './Cart/Cart';
 import Contact from './Contact/Contact';
 import Search from './Search/Search';
+import Global from '../../Global';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import initData from '../../../api/init';
+import {initCart} from '../../../action';
+import getCart from '../../../api/getCart';
 
 class TabBar extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            types: [],
+            topProducts: [],
+            cart:[]
+        };
+    }
+    componentDidMount() {
+        getCart()
+        .then((response)=>{
+            this.setState({cart:response},()=>this.props.initCart(this.state.cart))
+        });
+        initData()
+            .then(data => {
+                this.setState({
+                    types: data.types,
+                    topProducts: data.topProducts
+                })
+            })
+            .catch((error) => {
+                console.log('error', error);
+            });
     }
     render() {
+        console.log("CART HERE",this.props.cart);
         return (
             <Tabs initialPage={0}
                 tabBarPosition='bottom'
@@ -26,8 +54,8 @@ class TabBar extends Component {
                 }>
                     <Content padder>
                         <Collection />
-                        <Category onOpen={this.props.onOpenList} />
-                        <TopProduct onOpen={this.props.onOpenProduct} />
+                        <Category types={this.state.types} onOpen={this.props.navigation} />
+                        <TopProduct topProducts={this.state.topProducts} onOpen={this.props.navigation} />
                     </Content>
                 </Tab>
                 <Tab heading={
@@ -35,10 +63,10 @@ class TabBar extends Component {
 
                         <Icon name='cart' />
                         <Text>Cart</Text>
-                        <Badge style={styles.badge}><Text>2</Text></Badge>
+                        <Badge primary style={styles.badge}><Text>{this.props.cart.length}</Text></Badge>
                     </TabHeading>
                 }>
-                    <Cart onOpen={this.props.onOpenProduct} />
+                    <Cart onOpen={this.props.navigation} />
                 </Tab>
                 <Tab heading={
                     <TabHeading style={styles.tabHead}>
@@ -60,5 +88,13 @@ class TabBar extends Component {
         );
     }
 }
+function mapStateToProps(state) {
+    return {
+        cart: state.cart.cart,
+    };
+}
+function matchDispatchToProps(dispatch) {
+    return bindActionCreators({ initCart }, dispatch)
+}
 
-export default TabBar;
+export default connect(mapStateToProps,matchDispatchToProps)(TabBar);

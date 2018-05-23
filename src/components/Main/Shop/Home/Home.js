@@ -17,8 +17,7 @@ class Menu extends Component {
             <Container>
                 <Head onOpen={() => this.props.navigation.openDrawer()} />
                 <TabBar
-                    onOpenList={() => this.props.navigation.navigate('ListProducts')}
-                    onOpenProduct={() => this.props.navigation.navigate('ProductDetail')}
+                    navigation={this.props.navigation}
                 />
             </Container>
         );

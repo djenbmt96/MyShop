@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Image, TouchableOpacity } from 'react-native';
 import { Card, CardItem, Content, Text } from 'native-base';
 import styles from '../../../../styles/Main/Shop';
+import Global from '../../../Global';
 
 class TopProduct extends Component {
     constructor(props) {
@@ -18,58 +19,26 @@ class TopProduct extends Component {
                     justifyContent: 'space-around',
                     flexWrap: 'wrap'
                 }}>
-                    <TouchableOpacity style={styles.product} onPress={this.props.onOpen}>
-                        <Card>
-                            <CardItem style={styles.itemNoPadding}>
-                                <Image style={styles.imageProduct} source={require('../../../../../Images/sp1.jpeg')} />
-                            </CardItem>
-                            <CardItem  style={styles.itemName}>
-                                <Text style={styles.productName}>{'name'.toUpperCase()}</Text>
-                            </CardItem>
-                            <CardItem style={styles.itemName}>
-                                <Text style={styles.productPrice}>100$</Text>
-                            </CardItem>
-                        </Card>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.product}>
-                        <Card>
-                            <CardItem style={styles.itemNoPadding}>
-                                <Image style={styles.imageProduct} source={require('../../../../../Images/sp2.jpeg')} />
-                            </CardItem>
-                            <CardItem  style={styles.itemName}>
-                                <Text style={styles.productName}>NAME</Text>
-                            </CardItem>
-                            <CardItem style={styles.itemName}>
-                                <Text style={styles.productPrice}>100$</Text>
-                            </CardItem>
-                        </Card>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.product}>
-                        <Card>
-                            <CardItem style={styles.itemNoPadding}>
-                                <Image style={styles.imageProduct} source={require('../../../../../Images/sp3.jpeg')} />
-                            </CardItem>
-                            <CardItem  style={styles.itemName}>
-                                <Text style={styles.productName}>NAME</Text>
-                            </CardItem>
-                            <CardItem style={styles.itemName}>
-                                <Text style={styles.productPrice}>100$</Text>
-                            </CardItem>
-                        </Card>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.product}>
-                        <Card>
-                            <CardItem style={styles.itemNoPadding}>
-                                <Image style={styles.imageProduct} source={require('../../../../../Images/sp4.jpeg')} />
-                            </CardItem>
-                            <CardItem  style={styles.itemName}>
-                                <Text style={styles.productName}>NAME</Text>
-                            </CardItem>
-                            <CardItem style={styles.itemName}>
-                                <Text style={styles.productPrice}>100$</Text>
-                            </CardItem>
-                        </Card>
-                    </TouchableOpacity>
+                    {
+                        this.props.topProducts.map(
+                            item => (
+                                <TouchableOpacity key={item.id} style={styles.product} onPress={()=>this.props.onOpen.navigate('ProductDetail',{product:item})}>
+                                    <Card>
+                                        <CardItem style={styles.itemNoPadding}>
+                                            <Image style={styles.imageProduct} source={{uri:Global.DOMAIN_IMAGE+'product/'+item.images[0]}} />
+                                        </CardItem>
+                                        <CardItem style={styles.itemName}>
+                                            <Text style={styles.productName}>{item.name.toUpperCase()}</Text>
+                                        </CardItem>
+                                        <CardItem style={styles.itemName}>
+                                            <Text style={styles.productPrice}>{item.price}$</Text>
+                                        </CardItem>
+                                    </Card>
+                                </TouchableOpacity>
+                            )
+                        )
+                    }
+
                 </View>
             </Card>
         );

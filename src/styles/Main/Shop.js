@@ -101,5 +101,8 @@ export default styles=StyleSheet.create({
     },
     map:{
         width:'100%',height:width*0.6
+    },
+    noPaddingTopBot:{
+        paddingBottom:0, paddingTop:0
     }
 })

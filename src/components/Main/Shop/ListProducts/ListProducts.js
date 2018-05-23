@@ -9,10 +9,12 @@ class ListProducts extends Component {
     constructor(props) {
         super(props);
     }
-    goToDetail(){
-        this.props.navigation.navigate('ProductDetail');
+    goToDetail(product){
+        this.props.navigation.navigate('ProductDetail',{product:product});
     }
     render() {
+        const products=this.props.navigation.getParam('products',[]);
+        const type=this.props.navigation.getParam('type',[]);
         return (
             <Container>
                 <Head onOpen={() => this.props.navigation.openDrawer()} />
@@ -23,18 +25,18 @@ class ListProducts extends Component {
                         </Button>
                     </Left>
                     <Body>
-                        <Title style={{ color: '#CA6A27' }}>Party Dress</Title>
+                        <Title style={{ color: '#CA6A27' }}>{type.name}</Title>
                     </Body>
                     <Right />
                 </CardItem>
                 <Content>
                     <Card>
                         <List
-                            dataArray={[1, 2, 3,4,5]}
+                            dataArray={products}
                             renderRow={(item) => {
                                 return (
                                     <ListItem>
-                                        <Product product={item} onPress={()=>this.goToDetail()}/>
+                                        <Product product={item} onPress={()=>this.goToDetail(item)}/>
                                     </ListItem>
                                 )
                             }}
